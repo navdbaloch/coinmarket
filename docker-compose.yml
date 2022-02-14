@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  frontend:
+    container_name: coinmarket-frontend
+    hostname: frontend
+    image: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    networks:
+      - coinmarket-network
+    volumes:
+      - ./frontend:/usr/src
+      - /usr/src/node_modules
+    command: npx ng serve --host 0.0.0.0 --poll 2000
+
+networks:
+  coinmarket-network:
+    driver: bridge
