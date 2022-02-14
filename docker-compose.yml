@@ -12,11 +12,30 @@ services:
       - "4200:4200"
     networks:
       - coinmarket-network
+    depends_on:
+      - api
     volumes:
       - ./frontend:/usr/src
       - /usr/src/node_modules
     command: npx ng serve --host 0.0.0.0 --poll 2000
-
+  api:
+    container_name: coinmarket-api
+    hostname: coinmarket_api
+    image: coinmarket_api
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/usr/src
+      - /usr/src/node_modules
+    ports:
+      - 3000:3000
+      - 9229:9229
+    command: npm run dev
+    networks:
+      - coinmarket-network
+    # depends_on:
+    #   - database
 networks:
   coinmarket-network:
     driver: bridge
