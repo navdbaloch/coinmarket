@@ -10,8 +10,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4200:4200"
-    networks:
-      - coinmarket-network
     depends_on:
       - api
     volumes:
@@ -32,8 +30,6 @@ services:
       - 3000:3000
       - 9229:9229
     command: npm run dev
-    networks:
-      - coinmarket-network
     depends_on:
       - mongo
   mongo:
@@ -42,8 +38,6 @@ services:
     restart: always
     volumes:
       - mongo_data:/data/db
-    networks:
-      - coinmarket-network
     ports:
       - 27017:27017
     environment:
@@ -54,17 +48,11 @@ services:
     restart: always
     ports:
       - 8081:8081
-    networks:
-      - coinmarket-network
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
     depends_on:
       - mongo
-networks:
-  coinmarket-network:
-    driver: bridge
-
 volumes:
   mongo_data:
