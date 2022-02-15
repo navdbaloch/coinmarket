@@ -14,16 +14,9 @@ export interface ICoin {
   max_supply: number;
   circulating_supply: number;
   total_supply: number;
-  platform: {
-    id: number;
-    name: string;
-    symbol: string;
-    slug: string;
-    token_address: string;
-  };
   cmc_rank: number;
-  self_reported_circulating_supply: null;
-  self_reported_market_cap: null;
+  self_reported_circulating_supply: number;
+  self_reported_market_cap: number;
   last_updated: string;
   quote: {
     USD: {
