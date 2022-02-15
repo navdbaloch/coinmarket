@@ -1,0 +1,23 @@
+.coin-icon {
+  height: 24px;
+  width: 24px;
+  border-radius: 12px;
+}
+.flex-center {
+  box-sizing: border-box;
+  margin: 0px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.red-txt {
+  font-weight: bolder;
+  color: rgb(170, 15, 15);
+}
+.green-txt {
+  font-weight: bolder;
+  color: rgb(14, 107, 14);
+}
+.display-flex {
+  display: flex;
+}

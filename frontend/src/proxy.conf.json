@@ -7,5 +7,10 @@
     },
     "changeOrigin": true,
     "logLevel": "debug"
+  },
+  "/socket.io/*": {
+    "target": "http://coinmarket_api:3000/socket.io",
+    "secure": false,
+    "ws": true
   }
 }
