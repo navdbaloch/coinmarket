@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-function fetch() {
+function getLatestListing() {
   return new Promise(async (resolve, reject) => {
     let response = null;
     try {
@@ -21,4 +21,6 @@ function fetch() {
     }
   });
 }
-module.exports = fetch;
+module.exports = {
+  getLatestListing,
+};

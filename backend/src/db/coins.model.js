@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const coinsSchema = new mongoose.Schema({
   data: Array,
   status: {
