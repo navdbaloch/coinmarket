@@ -10,6 +10,7 @@ async function connect() {
   } catch (error) {
     console.error(error);
   }
+  return true;
 }
 
 module.exports = connect;
