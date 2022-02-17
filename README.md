@@ -1,12 +1,18 @@
-
 # Installation
 
-#### Pre-requisites
-Make sure docker and docker-composer are installed on your system
+You need to manully run the frontend(angular) and backend(dotnet) projects by following the steps outlined below
 
-1. Create a `.env` file by copying content of `.env.example`
-2. Optionally change `COIN_MARKET_ENV,COIN_MARKET_SECRET_KEY` values in `.env` to point to the coin market's production environment
-3. Run  `composer up` in the root directory to start the services, once all services up, open browser and navigate to `http://localhost:4200`, you should be able to see following screen
+## Backend
 
+1. Follow the steps outline at https://code.visualstudio.com/docs/languages/dotnet, to setup VS code
+2. Open `CoinMarketApi` folder in a stand-alone VS code instance
+3. Press `F5` to start dev server
 
+## Frontend
+
+1. navigate to `frontend` directory
+2. run `npm install` to install the dependencies
+3. run `ng serve` to start the developement server at `http://localhost:4200/`
+
+Once you have followed above steps, you should be able to see the following screen
 ![image](https://user-images.githubusercontent.com/29530972/154040907-915bf293-69a3-4a86-b33c-2b1db33542eb.png)
