@@ -13,13 +13,10 @@ import { CoinListComponent } from './coin-list.component';
 import { CoinDataService } from './coin-data.service';
 import { HttpClientModule } from '@angular/common/http';
 
-const config: SocketIoConfig = { url: '/', options: {} };
-
 @NgModule({
   declarations: [CoinListComponent],
   imports: [
     CommonModule,
-    SocketIoModule.forRoot(config),
     RouterModule.forChild([
       {
         path: '',

@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://coinmarket_api:3000/",
+    "target": "https://localhost:3000/",
     "secure": false,
     "pathRewrite": {
       "^/api": ""
@@ -9,7 +9,7 @@
     "logLevel": "debug"
   },
   "/socket.io/*": {
-    "target": "http://coinmarket_api:3000/socket.io",
+    "target": "https://localhost:3000/ws",
     "secure": false,
     "ws": true
   }

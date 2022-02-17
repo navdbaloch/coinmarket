@@ -4,54 +4,34 @@ import { Socket } from 'ngx-socket-io';
 import { merge, Observable } from 'rxjs';
 
 export interface ICoin {
+  circulatingSupply: number;
+  cmcRank: number;
   id: number;
+  marketCap: number;
+  maxSupply: number;
   name: string;
-  symbol: string;
+  numMarketPairs: number;
+  percentChange7d: number;
+  percentChange24h: number;
+  price: number;
   slug: string;
-  num_market_pairs: number;
-  date_added: string;
-  tags: string[];
-  max_supply: number;
-  circulating_supply: number;
-  total_supply: number;
-  cmc_rank: number;
-  self_reported_circulating_supply: number;
-  self_reported_market_cap: number;
-  last_updated: string;
-  quote: {
-    USD: {
-      price: number;
-      volume_24h: number;
-      volume_change_24h: number;
-      percent_change_1h: number;
-      percent_change_24h: number;
-      percent_change_7d: number;
-      percent_change_30d: number;
-      percent_change_60d: number;
-      percent_change_90d: number;
-      market_cap: number;
-      market_cap_dominance: number;
-      fully_diluted_market_cap: number;
-      last_updated: string;
-    };
-  };
-}
-
-export interface ICoinData {
-  data: ICoin[];
+  symbol: string;
+  totalSupply: number;
+  volume24h: number;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoinDataService {
-  constructor(private socket: Socket, private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-  getData(): Observable<ICoinData> {
-    this.socket.connect();
-    const http$ = this.http.get<ICoinData>(`/api/get-latest-data`);
-    const socket$ = new Observable<ICoinData>((subscriber) => {
-      this.socket.on('data', (data: ICoinData) => subscriber.next(data));
+  getData(): Observable<ICoin[]> {
+    const http$ = this.http.get<ICoin[]>(`/api/get-latest-data`);
+    let webSocket = new WebSocket('wss://localhost:3000/ws');
+    const socket$ = new Observable<ICoin[]>((subscriber) => {
+      webSocket.onmessage = (data) =>
+        subscriber.next(JSON.parse(data.data) as ICoin[]);
     });
     return merge(socket$, http$);
   }

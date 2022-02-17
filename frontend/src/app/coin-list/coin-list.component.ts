@@ -12,14 +12,14 @@ export class CoinListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort?: MatSort | undefined;
   displayedColumns: string[] = [
     'watch_list',
-    'cmc_rank',
+    'cmcRank',
     'name',
     'price',
-    'percent_change_24h',
-    'percent_change_7d',
-    'market_cap',
-    'volume_24h',
-    'total_supply',
+    'percentChange24h',
+    'percentChange7d',
+    'marketCap',
+    'volume24h',
+    'totalSupply',
     'action',
   ];
   dataSource = new MatTableDataSource<ICoin>();
@@ -31,8 +31,8 @@ export class CoinListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.dataSerice
-      .getData()
-      .subscribe((data) => (this.dataSource.data = data.data));
+    this.dataSerice.getData().subscribe((coins) => {
+      this.dataSource.data = coins;
+    });
   }
 }

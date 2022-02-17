@@ -1,7 +1,7 @@
 <table
   mat-table
   matSort
-  matSortActive="cmc_rank"
+  matSortActive="cmcRank"
   matSortDirection="asc"
   [dataSource]="dataSource"
   class="mat-elevation-z8"
@@ -16,9 +16,9 @@
   </ng-container>
 
   <!-- Rank Column -->
-  <ng-container matColumnDef="cmc_rank">
+  <ng-container matColumnDef="cmcRank">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
-    <td mat-cell *matCellDef="let element">{{ element.cmc_rank }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.cmcRank }}</td>
   </ng-container>
 
   <!-- Name Column -->
@@ -30,7 +30,6 @@
           src="https://s2.coinmarketcap.com/static/img/coins/64x64/{{
             element.id
           }}.png"
-          alt="{{ element.name }} {{ element.symbol }} icon"
           class="coin-icon"
         />
         <div style="margin-left: 5px">{{ element.name }}</div>
@@ -44,73 +43,63 @@
   <!-- Price Column -->
   <ng-container matColumnDef="price">
     <th mat-header-cell *matHeaderCellDef>Price</th>
-    <td mat-cell *matCellDef="let element">
-      ${{ element.quote.USD.price | number }}
-    </td>
+    <td mat-cell *matCellDef="let element">${{ element.price | number }}</td>
   </ng-container>
 
   <!-- Percent Change 24h Column -->
-  <ng-container matColumnDef="percent_change_24h">
+  <ng-container matColumnDef="percentChange24h">
     <th mat-header-cell *matHeaderCellDef>24 %</th>
     <td mat-cell *matCellDef="let element">
       <span
-      [ngClass]="
-        element.quote.USD.percent_change_24h >= 0 ? 'green-txt' : 'red-txt'
-      "
-      class="display-flex"
-    >
-      <mat-icon>
-        {{
-          element.quote.USD.percent_change_24h >= 0
-            ? "arrow_drop_up"
-            : "arrow_drop_down"
-        }}
-      </mat-icon>
-      {{ element.quote.USD.percent_change_24h | number: "1.2-2" }}
-    </span>
-    </td>
-  </ng-container>
-
-  <!-- Percent change 7d Column -->
-  <ng-container matColumnDef="percent_change_7d">
-    <th mat-header-cell *matHeaderCellDef>7d %</th>
-    <td mat-cell *matCellDef="let element">
-      <span
-        [ngClass]="
-          element.quote.USD.percent_change_7d >= 0 ? 'green-txt' : 'red-txt'
-        "
+        [ngClass]="element.percentChange24h >= 0 ? 'green-txt' : 'red-txt'"
         class="display-flex"
       >
         <mat-icon>
           {{
-            element.quote.USD.percent_change_7d >= 0
-              ? "arrow_drop_up"
-              : "arrow_drop_down"
+            element.percentChange24h >= 0 ? "arrow_drop_up" : "arrow_drop_down"
           }}
         </mat-icon>
-        {{ element.quote.USD.percent_change_7d | number: "1.2-2" }}
+        {{ element.percentChange24h | number: "1.2-2" }}
+      </span>
+    </td>
+  </ng-container>
+
+  <!-- Percent change 7d Column -->
+  <ng-container matColumnDef="percentChange7d">
+    <th mat-header-cell *matHeaderCellDef>7d %</th>
+    <td mat-cell *matCellDef="let element">
+      <span
+        [ngClass]="element.percentChange7d >= 0 ? 'green-txt' : 'red-txt'"
+        class="display-flex"
+      >
+        <mat-icon>
+          {{
+            element.percentChange7d >= 0 ? "arrow_drop_up" : "arrow_drop_down"
+          }}
+        </mat-icon>
+        {{ element.percentChange7d | number: "1.2-2" }}
       </span>
     </td>
   </ng-container>
 
   <!-- Market Cap Column -->
-  <ng-container matColumnDef="market_cap">
+  <ng-container matColumnDef="marketCap">
     <th mat-header-cell *matHeaderCellDef>Market Cap</th>
     <td mat-cell *matCellDef="let element">
-      ${{ element.quote.USD.market_cap | number }}
+      ${{ element.marketCap | number }}
     </td>
   </ng-container>
 
   <!-- Voumne 24h Column -->
-  <ng-container matColumnDef="volume_24h">
+  <ng-container matColumnDef="volume24h">
     <th mat-header-cell *matHeaderCellDef>Voumne(24)</th>
     <td mat-cell *matCellDef="let element">
-      ${{ element.quote.USD.volume_24h | number }}
+      ${{ element.volume24h | number }}
     </td>
   </ng-container>
 
   <!-- Circulating Supply Column -->
-  <ng-container matColumnDef="total_supply">
+  <ng-container matColumnDef="totalSupply">
     <th mat-header-cell *matHeaderCellDef>Circulating Supply</th>
     <td mat-cell *matCellDef="let element">
       {{ element.total_supply | number }} {{ element.symbol }}
